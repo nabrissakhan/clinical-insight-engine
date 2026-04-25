@@ -48,8 +48,13 @@ def generate_clinical_insight(facts):
         unit = observation.get("unit", "")
         interpretation = observation.get("interpretation", "Unknown")
 
-        # Format the lab value with a space before the unit when needed.
-        value_str = f"{value} {unit}".strip() if unit else str(value)
+        # Format value + unit with special handling for percentage values.
+        if unit == "%":
+            value_str = f"{value}%"
+        elif unit:
+            value_str = f"{value} {unit}"
+        else:
+            value_str = str(value)
 
         # Add a readable lab finding.
         insights.append(
