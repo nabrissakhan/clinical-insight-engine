@@ -1,3 +1,5 @@
+import sys
+
 # Import pprint so the retrieved facts are easier to read in the terminal.
 from pprint import pprint
 
@@ -14,12 +16,15 @@ from guardrails import validate_clinical_output
 from evaluator import evaluate_confidence
 
 # Define the file path to the sample patient data.
-DATA_PATH = "data/sample_patient.json"
+DEFAULT_DATA_PATH = "data/sample_patient.json"
 
 # Only run this block if the script is executed directly.
 if __name__ == "__main__":
+
+    data_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_DATA_PATH
+
     # Load the full FHIR patient bundle from the JSON file.
-    patient_bundle = load_patient_bundle(DATA_PATH)
+    patient_bundle = load_patient_bundle(data_path)
 
     # Retrieve structured clinical facts from the bundle.
     facts = retrieve_patient_facts(patient_bundle)
