@@ -1,7 +1,7 @@
 # Import pprint so the retrieved facts are easier to read in the terminal.
 from pprint import pprint
 
-# Import both retrieval functions from retriever.
+# Import functions for loading patient data and retrieving facts from the FHIR bundle.
 from retriever import load_patient_bundle, retrieve_patient_facts
 
 # Import the analyzer function that turns retrieved facts into an insight summary.
@@ -10,10 +10,11 @@ from analyzer import generate_clinical_insight
 # Import the guardrail function that validates the clinical insight before display.
 from guardrails import validate_clinical_output
 
+# Import the evaluator function that assigns a confidence score based on data availability and insight length.
+from evaluator import evaluate_confidence
 
 # Define the file path to the sample patient data.
 DATA_PATH = "data/sample_patient.json"
-
 
 # Only run this block if the script is executed directly.
 if __name__ == "__main__":
@@ -29,14 +30,23 @@ if __name__ == "__main__":
     # Run the guardrail check on the generated insight.
     guardrail_result = validate_clinical_output(insight)
 
+    # Compute a confidence evaluation based on data availability and insight length.
+    evaluation = evaluate_confidence(facts, insight)
+
     # Print the retrieved facts so we can verify the retrieval step.
     print("\n" + "="*40)
-    print("\n=== Retrieved Patient Facts ===\n")
+    print("=== Retrieved Patient Facts ===\n")
     pprint(facts)
 
     # Print the guardrail validation result.
-    print("\n=== Guardrail Check ===\n")
+    print("\n" + "="*40)
+    print("=== Guardrail Check ===\n")
     pprint(guardrail_result)
+
+    # Print the confidence evaluation.
+    print("\n" + "="*40)
+    print("=== Evaluation ===\n")
+    pprint(evaluation)
 
     # Only show the insight if it passes validation.
     if guardrail_result.get("passed", False):
