@@ -130,7 +130,29 @@ python src/main.py
 - Confidence scoring is based on data presence, not clinical severity or correctness  
 - Guardrails use rule-based phrase detection and may not capture subtle unsafe language  
 - The system processes a single patient bundle and does not support batch workflows  
-- Insight generation is deterministic and does not use machine learning  
+- Insight generation is deterministic and does not use machine learning
+
+## Design Decisions
+
+- A rule-based approach was chosen over machine learning to prioritize transparency and interpretability
+- Guardrails were separated from the analyzer to enforce safety independently of generation logic
+- Confidence scoring was implemented to provide a simple, explainable measure of system reliability
+- The system was designed as a modular pipeline to support extensibility and easier debugging
+
+## Testing Summary
+
+- Retrieval successfully extracted expected patient fields during manual testing
+- Guardrails correctly allowed safe outputs and flagged unsafe phrasing patterns
+- Confidence scores aligned with data completeness across scenarios
+- The system executed without runtime errors across tested runs
+
+## Reflection
+
+This project reinforced the importance of designing AI systems that are not only functional but also safe and interpretable. Separating retrieval, reasoning, validation, and evaluation made the system easier to debug and reason about.
+
+One key insight was that even simple rule-based systems benefit significantly from guardrails and evaluation layers to improve trustworthiness.
+
+AI assistance was helpful in structuring the system and suggesting modular design patterns. However, some suggestions required validation and correction, particularly around edge-case handling and ensuring safe data access.
 
 ## Safety Note
 
