@@ -1,0 +1,32 @@
+Clinical Insight Pipeline — System Architecture
+================================================
+
+Input: FHIR R4 Patient Bundle (JSON)
+        ↓
+load_patient_bundle()
+        ↓
+retrieve_patient_facts()
+    - Extract patient demographics
+    - Extract conditions
+    - Extract medications
+    - Extract observations (labs)
+    - Extract diagnostic reports
+        ↓
+generate_clinical_insight()
+    - Convert structured facts into readable summary
+    - Include safety disclaimer
+        ↓
+validate_clinical_output()
+    - Check for unsafe medical advice language
+    - Ensure disclaimer is present
+    - Ensure synthetic data disclosure is present
+    - Return pass/fail + issues list
+        ↓
+evaluate_confidence()
+    - Score based on data completeness (0.0 - 1.0)
+    - Adjust based on insight output length
+    - Assign confidence label (High / Moderate / Low)
+        ↓
+Decision
+    ├── Validation passed → Display clinical insight
+    └── Validation failed → Display guardrail violations
