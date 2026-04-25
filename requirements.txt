@@ -1,0 +1,4 @@
+# No third-party dependencies required.
+# This project uses only Python standard library modules.
+
+python>=3.8
