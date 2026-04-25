@@ -45,8 +45,6 @@ evaluate_confidence()        ← scores reliability based on data completeness
   no  → display guardrail violations
 ```
 
----
-
 ## Example Output
 
 ```text
@@ -83,3 +81,60 @@ evaluate_confidence()        ← scores reliability based on data completeness
 - Lab Finding: HbA1c is 7.8%, flagged as High.
 - Lab Finding: eGFR (CKD-EPI) is 68 mL/min/1.73m2, flagged as Low.
 ```
+
+## AI Design Features
+
+- **Retrieval-based architecture:** The system extracts structured facts from FHIR JSON before generating an insight summary.
+- **Transparent reasoning layer:** The analyzer uses retrieved facts to create a readable clinical summary.
+- **Guardrail enforcement:** The system validates output for safety and only displays the insight if validation passes.
+- **Confidence scoring:** The evaluator assigns a reliability score based on data availability and output quality.
+- **Responsible healthcare framing:** The output clearly states that the data is synthetic and not medical advice.
+
+## Sample Patient
+
+The synthetic patient represents a realistic clinical scenario:
+
+- **Type 2 Diabetes Mellitus (T2DM)** with suboptimal glycemic control (HbA1c 7.8%)
+- **Chronic Kidney Disease (CKD) Stage 2**, reflected by eGFR of 68 mL/min/1.73m2
+- Treated with **Metformin** and **Empagliflozin**, an SGLT2 inhibitor with both glucose-lowering and renal-protective effects
+
+The dataset is designed to reflect clinically meaningful relationships between conditions, labs, and medications.
+
+All data is **synthetic** and does not represent real patients.
+
+## How to Run
+
+This project uses only Python’s standard library.
+
+```bash
+python src/main.py
+```
+
+## Expected output includes:
+
+- Retrieved patient facts  
+- Guardrail validation results  
+- Confidence evaluation  
+- Clinical insight summary (if validation passes)
+
+## Data Sources
+
+- FHIR R4 Specification: https://hl7.org/fhir/R4  
+- LOINC (lab codes): https://loinc.org  
+- SNOMED CT (conditions): https://www.snomed.org  
+- RxNorm (medications): https://www.nlm.nih.gov/research/umls/rxnorm  
+
+## Limitations
+
+- Confidence scoring is based on data presence, not clinical severity or correctness  
+- Guardrails use rule-based phrase detection and may not capture subtle unsafe language  
+- The system processes a single patient bundle and does not support batch workflows  
+- Insight generation is deterministic and does not use machine learning  
+
+## Safety Note
+
+This project is for educational purposes only.
+
+- All patient data is synthetic  
+- No output constitutes medical advice  
+- The system includes guardrails to prevent unsafe or misleading outputs
