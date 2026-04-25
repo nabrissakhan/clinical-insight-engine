@@ -123,6 +123,7 @@ python src/main.py
 - LOINC (lab codes): https://loinc.org  
 - SNOMED CT (conditions): https://www.snomed.org  
 - RxNorm (medications): https://www.nlm.nih.gov/research/umls/rxnorm  
+- US Core Implementation Guide: https://hl7.org/fhir/us/core
 
 ## Limitations
 
@@ -138,3 +139,9 @@ This project is for educational purposes only.
 - All patient data is synthetic  
 - No output constitutes medical advice  
 - The system includes guardrails to prevent unsafe or misleading outputs
+
+## Responsible AI Documentation
+
+This project follows responsible AI practices, including transparency, safety validation, and clear limitations.
+
+See [model_card.md](model_card.md) for intended use, limitations, and ethical considerations.
