@@ -187,3 +187,13 @@ This project is for educational purposes only.
 This project follows responsible AI practices, including transparency, safety validation, and clear limitations.
 
 See [model_card.md](model_card.md) for intended use, limitations, and ethical considerations.
+
+## Stretch Features
+
+While not required, this project incorporates elements of a reliability and evaluation system through multiple patient test scenarios and confidence scoring.
+
+- Multiple predefined patient inputs (full data, missing observations, missing medications) were used to test system behavior.
+- The evaluator produces a confidence score (0.0–1.0) that changes based on data completeness.
+- Outputs were manually reviewed to confirm that the system adapts consistently across scenarios.
+
+This aligns with the "Test Harness or Evaluation Script" stretch category.
