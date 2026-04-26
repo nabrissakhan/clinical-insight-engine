@@ -26,7 +26,6 @@ clinical-insight-engine/
 ```
 Each module has a single responsibility, making the pipeline easy to understand, test, and extend.
 
-
 ## Pipeline Architecture
 
 ### Diagram
@@ -163,7 +162,7 @@ python src/main.py
 
 ## Reflection
 
-This project reinforced the importance of designing AI systems that are not only functional but also safe and interpretable. Separating retrieval, reasoning, validation, and evaluation made the system easier to debug and reason about.
+This project reinforced the importance of designing AI systems that are not only functional but also safe and interpretable - especially in healthcare contexts where outputs could be misread as clinical guidance. Separating retrieval, reasoning, validation, and evaluation made the system easier to debug and reason about.
 
 One key insight was that even simple rule-based systems benefit significantly from guardrails and evaluation layers to improve trustworthiness.
 
