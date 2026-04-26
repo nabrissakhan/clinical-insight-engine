@@ -28,6 +28,12 @@ Each module has a single responsibility, making the pipeline easy to understand,
 
 ## Pipeline Architecture
 
+### End-to-End Clinical Insight Pipeline
+
+<img src="assets/system_architecture.png" width="300">
+
+### System Architecture (Diagram)
+
 ### Diagram
 
 ```mermaid
