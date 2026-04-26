@@ -162,11 +162,17 @@ python src/main.py
 
 ## Reflection
 
-This project reinforced the importance of designing AI systems that are not only functional but also safe and interpretable - especially in healthcare contexts where outputs could be misread as clinical guidance. Separating retrieval, reasoning, validation, and evaluation made the system easier to debug and reason about.
+This project reinforced the importance of designing AI systems that are not only functional but also safe and interpretable, especially in healthcare contexts where outputs could be misread as clinical guidance. Separating retrieval, reasoning, validation, and evaluation made the system easier to debug and reason about.
 
-One key insight was that even simple rule-based systems benefit significantly from guardrails and evaluation layers to improve trustworthiness.
+One limitation of the system is that it relies on rule-based logic rather than learned models, which means it does not capture deeper clinical nuance or context. Additionally, the confidence score is based on data presence rather than clinical significance, so it may not fully reflect the quality or importance of the underlying data.
 
-AI assistance was helpful in structuring the system and suggesting modular design patterns. However, some suggestions required validation and correction, particularly around edge-case handling and ensuring safe data access.
+This system could be misused if its outputs were interpreted as real clinical recommendations. To mitigate this, I implemented guardrails that enforce a safety disclaimer, ensure the data is clearly identified as synthetic, and block unsafe or advisory language from being displayed.
+
+One key insight was that even simple rule-based systems benefit significantly from guardrails and evaluation layers to improve trustworthiness. One unexpected finding during testing was that the confidence score consistently dropped when key data components, such as medications or observations, were removed. This confirmed that the evaluator behaved as intended across multiple patient scenarios.
+
+AI assistance was helpful in structuring the system and suggesting modular design patterns, particularly in organizing the pipeline into distinct components. However, some suggestions required validation and correction, especially around edge-case handling and ensuring safe data access in FHIR parsing. This reinforced the importance of critically evaluating AI-generated suggestions rather than relying on them directly.
+
+Overall, this project reflects my approach to AI engineering, building systems that are modular, interpretable, testable, and designed with safety considerations in mind.
 
 ## Safety Note
 
