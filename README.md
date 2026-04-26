@@ -4,7 +4,11 @@ A modular Python pipeline that processes a synthetic FHIR R4 patient bundle to e
 
 Built as a final project to demonstrate responsible AI system design patterns applied to healthcare data.
 
----
+## Demo Walkthrough
+
+Watch the system run end-to-end, including multiple patient scenarios and evaluation behavior:
+
+[Loom Video](https://www.loom.com/share/4abb69106d964b3b8c683d527557bf6b)
 
 ## Project Structure
 
