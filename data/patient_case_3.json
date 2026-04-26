@@ -1,20 +1,20 @@
 {
   "_comment": {
-    "description": "Sample FHIR R4 Patient Bundle — created for academic final project",
+    "description": "Sample FHIR R4 Patient Bundle \u2014 created for academic final project (patient_case_3: missing medications)",
     "sources": {
-      "FHIR_specification": "HL7 FHIR R4 — https://hl7.org/fhir/R4",
-      "US_Core_profile": "US Core Implementation Guide — https://hl7.org/fhir/us/core",
-      "LOINC_codes": "Logical Observation Identifiers Names and Codes — https://loinc.org (HbA1c: 4548-4, eGFR CKD-EPI: 62238-1, CMP: 24323-8)",
-      "SNOMED_CT": "SNOMED Clinical Terms — https://snomed.info/sct (T2DM: 44054006, oral route: 26643006)",
-      "RxNorm": "NLM RxNorm — https://www.nlm.nih.gov/research/umls/rxnorm (Metformin 500mg: 860975, Empagliflozin 10mg: 1049630)",
+      "FHIR_specification": "HL7 FHIR R4 \u2014 https://hl7.org/fhir/R4",
+      "US_Core_profile": "US Core Implementation Guide \u2014 https://hl7.org/fhir/us/core",
+      "LOINC_codes": "Logical Observation Identifiers Names and Codes \u2014 https://loinc.org (HbA1c: 4548-4, eGFR CKD-EPI: 62238-1, CMP: 24323-8)",
+      "SNOMED_CT": "SNOMED Clinical Terms \u2014 https://snomed.info/sct (T2DM: 44054006, oral route: 26643006)",
+      "RxNorm": "NLM RxNorm \u2014 https://www.nlm.nih.gov/research/umls/rxnorm (Metformin 500mg: 860975, Empagliflozin 10mg: 1049630)",
       "clinical_guidelines": [
-        "ADA Standards of Medical Care in Diabetes — https://diabetes.org",
-        "KDIGO CKD Clinical Practice Guidelines — https://kdigo.org"
+        "ADA Standards of Medical Care in Diabetes \u2014 https://diabetes.org",
+        "KDIGO CKD Clinical Practice Guidelines \u2014 https://kdigo.org"
       ]
     }
   },
   "resourceType": "Bundle",
-  "id": "sample-patient-bundle-001",
+  "id": "sample-patient-bundle-003",
   "meta": {
     "lastUpdated": "2026-04-25T10:00:00Z"
   },
@@ -27,7 +27,9 @@
         "resourceType": "Patient",
         "id": "patient-001",
         "meta": {
-          "profile": ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"]
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+          ]
         },
         "identifier": [
           {
@@ -41,7 +43,10 @@
           {
             "use": "official",
             "family": "Rivera",
-            "given": ["Elena", "M"]
+            "given": [
+              "Elena",
+              "M"
+            ]
           }
         ],
         "gender": "female",
@@ -49,7 +54,9 @@
         "address": [
           {
             "use": "home",
-            "line": ["482 Maple Street"],
+            "line": [
+              "482 Maple Street"
+            ],
             "city": "Denver",
             "state": "CO",
             "postalCode": "80203",
@@ -115,7 +122,9 @@
           ],
           "text": "Type 2 Diabetes Mellitus"
         },
-        "subject": { "reference": "urn:uuid:patient-001" },
+        "subject": {
+          "reference": "urn:uuid:patient-001"
+        },
         "onsetDateTime": "2018-06-01",
         "recordedDate": "2018-06-15"
       }
@@ -161,111 +170,11 @@
           ],
           "text": "Chronic Kidney Disease Stage 2"
         },
-        "subject": { "reference": "urn:uuid:patient-001" },
+        "subject": {
+          "reference": "urn:uuid:patient-001"
+        },
         "onsetDateTime": "2021-11-10",
         "recordedDate": "2021-11-22"
-      }
-    },
-    {
-      "fullUrl": "urn:uuid:med-request-001",
-      "resource": {
-        "resourceType": "MedicationRequest",
-        "id": "med-request-001",
-        "status": "active",
-        "intent": "order",
-        "medication": {
-          "concept": {
-            "coding": [
-              {
-                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
-                "code": "860975",
-                "display": "Metformin 500 MG Oral Tablet"
-              }
-            ],
-            "text": "Metformin 500mg"
-          }
-        },
-        "subject": { "reference": "urn:uuid:patient-001" },
-        "reason": [{ "reference": { "reference": "urn:uuid:condition-001" } }],
-        "dosageInstruction": [
-          {
-            "text": "Take 1 tablet by mouth twice daily with meals",
-            "timing": {
-              "repeat": {
-                "frequency": 2,
-                "period": 1,
-                "periodUnit": "d"
-              }
-            },
-            "route": {
-              "coding": [
-                {
-                  "system": "http://snomed.info/sct",
-                  "code": "26643006",
-                  "display": "Oral route"
-                }
-              ]
-            },
-            "doseAndRate": [
-              {
-                "doseQuantity": {
-                  "value": 500,
-                  "unit": "mg",
-                  "system": "http://unitsofmeasure.org",
-                  "code": "mg"
-                }
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "urn:uuid:med-request-002",
-      "resource": {
-        "resourceType": "MedicationRequest",
-        "id": "med-request-002",
-        "status": "active",
-        "intent": "order",
-        "medication": {
-          "concept": {
-            "coding": [
-              {
-                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
-                "code": "1049630",
-                "display": "Empagliflozin 10 MG Oral Tablet"
-              }
-            ],
-            "text": "Empagliflozin 10mg"
-          }
-        },
-        "subject": { "reference": "urn:uuid:patient-001" },
-        "reason": [
-          { "reference": { "reference": "urn:uuid:condition-001" } },
-          { "reference": { "reference": "urn:uuid:condition-002" } }
-        ],
-        "dosageInstruction": [
-          {
-            "text": "Take 1 tablet by mouth once daily in the morning",
-            "timing": {
-              "repeat": {
-                "frequency": 1,
-                "period": 1,
-                "periodUnit": "d"
-              }
-            },
-            "doseAndRate": [
-              {
-                "doseQuantity": {
-                  "value": 10,
-                  "unit": "mg",
-                  "system": "http://unitsofmeasure.org",
-                  "code": "mg"
-                }
-              }
-            ]
-          }
-        ]
       }
     },
     {
@@ -295,7 +204,9 @@
           ],
           "text": "HbA1c"
         },
-        "subject": { "reference": "urn:uuid:patient-001" },
+        "subject": {
+          "reference": "urn:uuid:patient-001"
+        },
         "effectiveDateTime": "2026-01-15T08:30:00Z",
         "valueQuantity": {
           "value": 7.8,
@@ -316,8 +227,14 @@
         ],
         "referenceRange": [
           {
-            "low": { "value": 4.0, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%" },
-            "high": { "value": 5.6, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%" },
+            "low": {
+              "value": 4.0,
+              "unit": "%"
+            },
+            "high": {
+              "value": 5.6,
+              "unit": "%"
+            },
             "text": "Normal: 4.0 - 5.6%"
           }
         ]
@@ -349,7 +266,9 @@
           ],
           "text": "eGFR (CKD-EPI)"
         },
-        "subject": { "reference": "urn:uuid:patient-001" },
+        "subject": {
+          "reference": "urn:uuid:patient-001"
+        },
         "effectiveDateTime": "2026-01-15T08:30:00Z",
         "valueQuantity": {
           "value": 68,
@@ -370,8 +289,14 @@
         ],
         "referenceRange": [
           {
-            "low": { "value": 60, "unit": "mL/min/1.73m2" },
-            "high": { "value": 89, "unit": "mL/min/1.73m2" },
+            "low": {
+              "value": 60,
+              "unit": "mL/min/1.73m2"
+            },
+            "high": {
+              "value": 89,
+              "unit": "mL/min/1.73m2"
+            },
             "text": "CKD Stage 2: 60-89"
           }
         ]
@@ -404,14 +329,20 @@
           ],
           "text": "Comprehensive Metabolic Panel"
         },
-        "subject": { "reference": "urn:uuid:patient-001" },
+        "subject": {
+          "reference": "urn:uuid:patient-001"
+        },
         "effectiveDateTime": "2026-01-15T08:30:00Z",
         "issued": "2026-01-15T14:00:00Z",
         "result": [
-          { "reference": "urn:uuid:obs-hba1c-001" },
-          { "reference": "urn:uuid:obs-egfr-001" }
+          {
+            "reference": "urn:uuid:obs-hba1c-001"
+          },
+          {
+            "reference": "urn:uuid:obs-egfr-001"
+          }
         ],
-        "conclusion": "HbA1c elevated at 7.8%, consistent with suboptimal glycemic control. eGFR of 68 indicates CKD Stage 2. Recommend medication review given renal function."
+        "conclusion": "HbA1c elevated at 7.8%, consistent with suboptimal glycemic control. eGFR of 68 indicates CKD Stage 2. Medication reconciliation incomplete \u2014 no active medications recorded."
       }
     }
   ]
