@@ -26,10 +26,29 @@ clinical-insight-engine/
 ```
 Each module has a single responsibility, making the pipeline easy to understand, test, and extend.
 
+
 ## Pipeline Architecture
 
+```text
+load_patient_bundle()
+    ↓
+retrieve_patient_facts()
+    ↓
+generate_clinical_insight()
+    ↓
+validate_clinical_output()   ← checks safety and compliance
+    ↓
+evaluate_confidence()        ← scores reliability based on data completeness
+    ↓
+(validation passed?)
+  yes → display clinical insight
+  no  → display guardrail violations
+```
+
+## Pipeline Architecture (Diagram)
+
 ```mermaid
-flowchart TD
+flowchart LR
     A["FHIR R4 Patient Bundle<br/>(JSON input)"] --> B["load_patient_bundle()"]
     B --> C["retrieve_patient_facts()<br/>Extract demographics, conditions, medications, labs, reports"]
     C --> D["generate_clinical_insight()<br/>Create readable clinical summary"]
