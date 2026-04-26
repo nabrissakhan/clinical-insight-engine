@@ -4,16 +4,16 @@ import sys
 from pprint import pprint
 
 # Import functions for loading patient data and retrieving facts from the FHIR bundle.
-from retriever import load_patient_bundle, retrieve_patient_facts
+from src.retriever import load_patient_bundle, retrieve_patient_facts
 
 # Import the analyzer function that turns retrieved facts into an insight summary.
-from analyzer import generate_clinical_insight
+from src.analyzer import generate_clinical_insight
 
 # Import the guardrail function that validates the clinical insight before display.
-from guardrails import validate_clinical_output
+from src.guardrails import validate_clinical_output
 
 # Import the evaluator function that assigns a confidence score based on data availability and insight length.
-from evaluator import evaluate_confidence
+from src.evaluator import evaluate_confidence
 
 # Define the file path to the sample patient data.
 DEFAULT_DATA_PATH = "data/sample_patient.json"
